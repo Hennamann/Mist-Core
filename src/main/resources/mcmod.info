@@ -1,0 +1,16 @@
+[
+{
+  "modid": "mistcore",
+  "name": "Mist Core",
+  "description": "A mod required for mods using mist",
+  "version": "1.8-1.0",
+  "mcversion": "1.8",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Hennamann"],
+  "credits": "Square Enix, Viridian Ouroboros, Glitchfiend",
+  "logoFile": "logo.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]
