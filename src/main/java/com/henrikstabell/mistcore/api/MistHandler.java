@@ -31,10 +31,10 @@ public class MistHandler {
    public void onGetMistColour(FogColors event) {
       if(event.getEntity() instanceof EntityPlayer) {
          EntityPlayer player = (EntityPlayer)event.getEntity();
-         World world = player.worldObj;
-         int x = MathHelper.floor_double(player.posX);
-         int y = MathHelper.floor_double(player.posY);
-         int z = MathHelper.floor_double(player.posZ);
+         World world = player.world;
+         int x = MathHelper.floor(player.posX);
+         int y = MathHelper.floor(player.posY);
+         int z = MathHelper.floor(player.posZ);
          IBlockState blockAtEyes = ActiveRenderInfo.getBlockStateAtEntityViewpoint(world, event.getEntity(), (float)event.getRenderPartialTicks());
          if(blockAtEyes.getMaterial() == Material.LAVA) {
             return;
@@ -57,10 +57,10 @@ public class MistHandler {
    @SubscribeEvent
    public void onRenderMist(RenderFogEvent event) {
       Entity entity = event.getEntity();
-      World world = entity.worldObj;
-      int playerX = MathHelper.floor_double(entity.posX);
-      int playerY = MathHelper.floor_double(entity.posY);
-      int playerZ = MathHelper.floor_double(entity.posZ);
+      World world = entity.world;
+      int playerX = MathHelper.floor(entity.posX);
+      int playerY = MathHelper.floor(entity.posY);
+      int playerZ = MathHelper.floor(entity.posZ);
       if((double)playerX == MistX && (double)playerZ == MistZ && MistInit) {
          renderMist(event.getFogMode(), MistFarPlaneDistance, 0.75F);
       } else {
@@ -294,7 +294,7 @@ public class MistHandler {
          gBiomeMist /= 255.0F;
          bBiomeMist /= 255.0F;
          float var31 = world.getCelestialAngle((float)renderPartialTicks);
-         float var32 = MathHelper.clamp_float(MathHelper.cos(var31 * 3.1415927F * 2.0F) * 2.0F + 0.5F, 0.0F, 1.0F);
+         float var32 = MathHelper.clamp(MathHelper.cos(var31 * 3.1415927F * 2.0F) * 2.0F + 0.5F, 0.0F, 1.0F);
          float var33 = var32 * 0.94F + 0.06F;
          float var34 = var32 * 0.94F + 0.06F;
          float var28 = var32 * 0.91F + 0.09F;
