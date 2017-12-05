@@ -1,6 +1,5 @@
 package com.henrikstabell.mistcore.api;
 
-import com.henrikstabell.mistcore.api.IBiomeMist;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
