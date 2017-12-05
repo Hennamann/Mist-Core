@@ -73,7 +73,7 @@ public class MistHandler {
          float farPlaneDistanceScaleBiome;
          for(int weightMixed = -distance; weightMixed <= distance; ++weightMixed) {
             for(int weightDefault = -distance; weightDefault <= distance; ++weightDefault) {
-               Biome fpDistanceBiomeMistAvg = world.getBiomeGenForCoords(new BlockPos(playerX + weightMixed, playerZ + weightDefault, playerZ));
+               Biome fpDistanceBiomeMistAvg = world.getBiomeForCoordsBody(new BlockPos(playerX + weightMixed, playerZ + weightDefault, playerZ));
                if(fpDistanceBiomeMistAvg instanceof IBiomeMist) {
                   farPlaneDistance = ((IBiomeMist)fpDistanceBiomeMistAvg).getMistDensity(playerX + weightMixed, playerY, playerZ + weightDefault);
                   farPlaneDistanceScaleBiome = 1.0F;
@@ -177,7 +177,7 @@ public class MistHandler {
       float bMixed;
       for(int weight = -distance; weight <= distance; ++weight) {
          for(int respirationLevel = -distance; respirationLevel <= distance; ++respirationLevel) {
-            Biome rMixed = world.getBiomeGenForCoords(new BlockPos(playerX + weight, playerZ + respirationLevel, playerZ));
+            Biome rMixed = world.getBiomeForCoordsBody(new BlockPos(playerX + weight, playerZ + respirationLevel, playerZ));
             int gMixed = rMixed.getWaterColorMultiplier();
             bMixed = (float)((gMixed & 16711680) >> 16);
             float gPart = (float)((gMixed & '\uff00') >> 8);
@@ -242,7 +242,7 @@ public class MistHandler {
       float weightMixed;
       for(int celestialAngle = -distance; celestialAngle <= distance; ++celestialAngle) {
          for(int baseScale = -distance; baseScale <= distance; ++baseScale) {
-            Biome rScale = world.getBiomeGenForCoords(new BlockPos(playerX + celestialAngle, playerZ + baseScale, playerZ));
+            Biome rScale = world.getBiomeForCoordsBody(new BlockPos(playerX + celestialAngle, playerZ + baseScale, playerZ));
             if(rScale instanceof IBiomeMist) {
                IBiomeMist gScale = (IBiomeMist)rScale;
                int bScale = gScale.getMistColour(playerX + celestialAngle, playerY, playerZ + baseScale);
