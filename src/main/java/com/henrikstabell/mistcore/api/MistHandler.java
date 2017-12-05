@@ -47,9 +47,9 @@ public class MistHandler {
             mixedColor = getMistBlendColour(world, player, x, y, z, event.getRed(), event.getGreen(), event.getBlue(), event.getRenderPartialTicks());
          }
 
-         event.setRed((float)mixedColor.xCoord);
-         event.setGreen((float)mixedColor.yCoord);
-         event.setBlue((float)mixedColor.zCoord);
+         event.setRed((float)mixedColor.x);
+         event.setGreen((float)mixedColor.y);
+         event.setBlue((float)mixedColor.z);
       }
 
    }
@@ -316,14 +316,14 @@ public class MistHandler {
          gBiomeMist *= var34 / weightBiomeMist;
          bBiomeMist *= var28 / weightBiomeMist;
          Vec3d var29 = postProcessColor(world, playerEntity, rBiomeMist, gBiomeMist, bBiomeMist, renderPartialTicks);
-         rBiomeMist = (float)var29.xCoord;
-         gBiomeMist = (float)var29.yCoord;
-         bBiomeMist = (float)var29.zCoord;
+         rBiomeMist = (float)var29.x;
+         gBiomeMist = (float)var29.y;
+         bBiomeMist = (float)var29.z;
          weightMixed = (float)(distance * 2 * distance * 2);
          float var30 = weightMixed - weightBiomeMist;
-         var29.xCoord = (double)((rBiomeMist * weightBiomeMist + defR * var30) / weightMixed);
-         var29.yCoord = (double)((gBiomeMist * weightBiomeMist + defG * var30) / weightMixed);
-         var29.zCoord = (double)((bBiomeMist * weightBiomeMist + defB * var30) / weightMixed);
+         var29.x = (double)((rBiomeMist * weightBiomeMist + defR * var30) / weightMixed);
+         var29.y = (double)((gBiomeMist * weightBiomeMist + defG * var30) / weightMixed);
+         var29.z = (double)((bBiomeMist * weightBiomeMist + defB * var30) / weightMixed);
          return var29;
       }
    }
