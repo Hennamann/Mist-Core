@@ -80,5 +80,21 @@ processResources
         manifest {
             attributes 'FMLAT': 'mistcore_at.cfg'
         }
-    }
+  
+        task deobfJar(type: Jar, dependsOn: 'jar') {
+            from "build/source/main"
+            classifier "dev"
+        }
+        artifacts {
+            archives deobfJar
+        }
+
+        task javadocJar(type: Jar, dependsOn: 'javadoc') {
+            from "build/docs/javadoc"
+            classifier "javadoc"
+        }
+        artifacts {
+            archives javadocJar
+        }
+}
 }
