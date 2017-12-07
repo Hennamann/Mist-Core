@@ -10,7 +10,6 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-
 version = "1.0"
 group = "com.henrikstabell.mistcore" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "mistcore"
@@ -57,6 +56,17 @@ dependencies {
 
 }
 
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDir 'resources'
+        }
+    }
+}
+
 processResources {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
@@ -74,26 +84,43 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+}
 
-    jar {
-	manifest {
+jar {
+    from { configurations.exportedCompile.collect { it.isDirectory() ? it : zipTree(it) } }
+    manifest {
 	    attributes 'FMLAT': 'mistcore_at.cfg'
-	}
     }
+    classifier = 'universal'
+}
 
-        task deobfJar(type: Jar, dependsOn: 'jar') {
-            from "build/source/main"
-            classifier "dev"
-        }
-        artifacts {
-            archives deobfJar
-        }
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
 
-        task javadocJar(type: Jar, dependsOn: 'javadoc') {
-            from "build/docs/javadoc"
-            classifier "javadoc"
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    from { configurations.exportedCompile.collect { it.isDirectory() ? it : zipTree(it) } }
+    manifest {
+	    attributes 'FMLAT': 'mistcore_at.cfg'
+    }
+    classifier = 'dev'
+}
+
+task exportJavadoc(type: Javadoc) {
+    source = sourceSets.main.allSource
+}
+
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
         }
-        artifacts {
-            archives javadocJar
-        }
+    }
+}
+
+artifacts {
+    archives sourceJar
+    archives deobfJar
 }
