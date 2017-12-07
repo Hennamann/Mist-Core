@@ -10,7 +10,6 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-
 version = "1.0"
 group = "com.henrikstabell.mistcore" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "mistcore"
@@ -30,7 +29,11 @@ minecraft {
     // Use non-default mappings at your own risk. they may not always work.
     // simply re-run your setup task after changing the mappings to update your workspace.
     mappings = "snapshot_20171003"
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+    makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+}
+
+configurations {
+    compile.extendsFrom exportedCompile
 }
 
 dependencies {
@@ -54,7 +57,17 @@ dependencies {
     // for more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+}
 
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDir 'resources'
+        }
+    }
 }
 
 processResources {
@@ -74,25 +87,44 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+}
 
-    jar {
-	manifest {
+jar {
+    from { configurations.exportedCompile.collect { it.isDirectory() ? it : zipTree(it) } }
+    manifest {
 	    attributes 'FMLAT': 'mistcore_at.cfg'
     }
-        task deobfJar(type: Jar, dependsOn: 'jar') {
-            from "build/source/main"
-            classifier "dev"
-        }
-        artifacts {
-            archives deobfJar
-        }
-
-        task javadocJar(type: Jar, dependsOn: 'javadoc') {
-            from "build/docs/javadoc"
-            classifier "javadoc"
-        }
-        artifacts {
-            archives javadocJar
-        }
+    classifier = 'universal'
 }
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    from { configurations.exportedCompile.collect { it.isDirectory() ? it : zipTree(it) } }
+    manifest {
+	    attributes 'FMLAT': 'mistcore_at.cfg'
+    }
+    classifier = 'dev'
+}
+
+task exportJavadoc(type: Javadoc) {
+    source = sourceSets.main.allSource
+    classifier = 'javadoc'
+}
+
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
+
+artifacts {
+    archives sourceJar
+    archives deobfJar
 }
