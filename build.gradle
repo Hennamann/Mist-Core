@@ -108,6 +108,6 @@ if (JavaVersion.current().isJava8Compatible()) {
 }
 
 artifacts {
-    archives sourceJar
+    archives sourcesJar
     archives deobfJar
 }
