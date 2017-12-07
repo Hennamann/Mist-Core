@@ -113,7 +113,6 @@ task deobfJar(type: Jar) {
 
 task exportJavadoc(type: Javadoc) {
     source = sourceSets.main.allSource
-    classifier = 'javadoc'
 }
 
 if (JavaVersion.current().isJava8Compatible()) {
