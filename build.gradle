@@ -74,7 +74,6 @@ processResources
 }
 
 jar {
-    from { configurations.exportedCompile.collect { it.isDirectory() ? it : zipTree(it) } }
     manifest {
 	    attributes 'FMLAT': 'mistcore_at.cfg'
     }
@@ -88,7 +87,6 @@ task sourcesJar(type: Jar) {
 
 task deobfJar(type: Jar) {
     from sourceSets.main.output
-    from { configurations.exportedCompile.collect { it.isDirectory() ? it : zipTree(it) } }
     manifest {
 	    attributes 'FMLAT': 'mistcore_at.cfg'
     }
