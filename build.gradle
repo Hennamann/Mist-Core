@@ -61,6 +61,17 @@ dependencies {
 
 }
 
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDir 'resources'
+        }
+    }
+}
+
 processResources
 {
     // this will ensure that this task is redone when the versions change.
@@ -79,26 +90,43 @@ processResources
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+}
 
-    jar {
-        manifest {
-            attributes 'FMLAT': 'mistcore_at.cfg'
+jar {
+    from { configurations.exportedCompile.collect { it.isDirectory() ? it : zipTree(it) } }
+    manifest {
+	    attributes 'FMLAT': 'mistcore_at.cfg'
+    }
+    classifier = 'universal'
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    from { configurations.exportedCompile.collect { it.isDirectory() ? it : zipTree(it) } }
+    manifest {
+	    attributes 'FMLAT': 'mistcore_at.cfg'
+    }
+    classifier = 'dev'
+}
+
+task exportJavadoc(type: Javadoc) {
+    source = sourceSets.main.allSource
+}
+
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
         }
     }
-    
-        task deobfJar(type: Jar, dependsOn: 'jar') {
-            from "build/source/main"
-            classifier "dev"
-        }
-        artifacts {
-            archives deobfJar
-        }
+}
 
-        task javadocJar(type: Jar, dependsOn: 'javadoc') {
-            from "build/docs/javadoc"
-            classifier "javadoc"
-        }
-        artifacts {
-            archives javadocJar
-        }
+artifacts {
+    archives sourceJar
+    archives deobfJar
 }
