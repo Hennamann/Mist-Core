@@ -11,7 +11,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'maven-publish'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-version = "1.0.1"
+version = "1.0.2"
 group = "com.henrikstabell.mistcore" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "mistcore-1.12"
 
@@ -105,7 +105,7 @@ task sourcesJar(type: Jar) {
 
 task deobfJar(type: Jar, dependsOn: 'jar') {
     from "build/sources/main"
-    from "build/resources/main/java"
+    from "build/resources/main"
     from { configurations.exportedCompile.collect { it.isDirectory() ? it : zipTree(it) } }
     manifest {
 	    attributes 'FMLAT': 'mistcore_at.cfg'
