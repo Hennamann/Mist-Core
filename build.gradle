@@ -103,8 +103,8 @@ task sourcesJar(type: Jar) {
     classifier = 'sources'
 }
 
-task deobfJar(type: Jar) {
-    from sourceSets.main.output
+task deobfJar(type: Jar, dependsOn: 'jar') {
+    from "build/sources/main"
     from { configurations.exportedCompile.collect { it.isDirectory() ? it : zipTree(it) } }
     manifest {
 	    attributes 'FMLAT': 'mistcore_at.cfg'
