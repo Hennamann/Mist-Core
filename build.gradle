@@ -8,6 +8,7 @@ buildscript {
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'maven-publish'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 version = "1.0"
@@ -115,12 +116,41 @@ task exportJavadoc(type: Javadoc) {
     source = sourceSets.main.allSource
 }
 
+task copyBuildXml(type: Copy) {
+    from 'build.properties'
+    into 'output'
+}
+
 if (JavaVersion.current().isJava8Compatible()) {
     allprojects {
         tasks.withType(Javadoc) {
             options.addStringOption('Xdoclint:none', '-quiet')
         }
     }
+}
+
+publishing {
+    tasks.publish.dependsOn 'build'
+    publications {
+        mavenJava(MavenPublication) {
+            groupId 'com.henrikstabell.mistcore'
+            artifactId 'MistCore-1.12'
+            from components.java
+
+            artifact sourceJar
+            artifact deobfJar
+        }
+    }
+
+    repositories {
+            maven { 
+                credentials {
+                        username mavenUser
+                        password mavenPass
+                    }
+                url mavenURL
+            }
+        }
 }
 
 artifacts {
