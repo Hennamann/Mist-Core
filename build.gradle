@@ -16,10 +16,11 @@ buildscript {
 }
 
 apply plugin: 'forge'
+apply plugin: 'maven-publish'
 
 version = "1.0"
 group= "com.henrikstabell.mistcore" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "mistcore"
+archivesBaseName = "mistcore-1.7.10"
 
 minecraft {
     version = "1.7.10-10.13.4.1614-1.7.10"
@@ -103,6 +104,30 @@ if (JavaVersion.current().isJava8Compatible()) {
             options.addStringOption('Xdoclint:none', '-quiet')
         }
     }
+}
+
+publishing {
+    tasks.publish.dependsOn 'build'
+    publications {
+        mavenJava(MavenPublication) {
+            groupId 'com.henrikstabell.mistcore'
+            artifactId 'MistCore-1.7.10'
+            from components.java
+
+            artifact sourceJar
+            artifact deobfJar
+        }
+    }
+
+    repositories {
+            maven { 
+                credentials {
+                        username mavenUser
+                        password mavenPass
+                    }
+                url mavenURL
+            }
+        }
 }
 
 artifacts {
