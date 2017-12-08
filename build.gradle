@@ -125,6 +125,30 @@ if (JavaVersion.current().isJava8Compatible()) {
     }
 }
 
+publishing {
+    tasks.publish.dependsOn 'build'
+    publications {
+        mavenJava(MavenPublication) {
+            groupId 'com.henrikstabell.mistcore'
+            artifactId 'MistCore-1.8'
+            from components.java
+
+            artifact sourceJar
+            artifact deobfJar
+        }
+    }
+
+    repositories {
+            maven { 
+                credentials {
+                        username mavenUser
+                        password mavenPass
+                    }
+                url mavenURL
+            }
+        }
+}
+
 artifacts {
     archives sourceJar
     archives deobfJar
