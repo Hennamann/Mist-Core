@@ -106,7 +106,7 @@ task sourcesJar(type: Jar) {
 }
 
 task deobfJar(type: Jar, dependsOn: 'jar') {
-    from "build/sources/main"
+    from "build/sources/main/java"
     from "build/resources/main"
     from { configurations.exportedCompile.collect { it.isDirectory() ? it : zipTree(it) } }
     manifest {
