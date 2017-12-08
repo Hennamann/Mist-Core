@@ -20,6 +20,7 @@ import net.minecraftforge.client.event.EntityViewRenderEvent.RenderFogEvent;
 import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.lwjgl.opengl.GL11;
+import com.henrikstabell.mistcore.api.IBiomeMist;
 
 public class MistHandler {
    private static double MistX;
