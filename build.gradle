@@ -13,7 +13,7 @@ apply plugin: 'maven-publish'
 
 version = "1.0"
 group = "com.henrikstabell.mistcore" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "mistcore"
+archivesBaseName = "mistcore-1.12"
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {
