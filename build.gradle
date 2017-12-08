@@ -19,10 +19,11 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
+apply plugin: 'maven-publish'
 
 version = "1.0"
 group= "com.henrikstabell.mistcore" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "mistcore"
+archivesBaseName = "mistcore-1.8"
 
 minecraft {
     version = "1.8-11.14.4.1577"
