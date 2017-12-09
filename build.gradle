@@ -148,10 +148,16 @@ publishing {
     repositories {
             maven { 
                 credentials {
+                    if (project.hasProperty('mavenUser')) {
                         username mavenUser
+                    }
+                    if (project.hasProperty('mavenPass')) {
                         password mavenPass
                     }
-                url mavenURL
+                    }
+                if (project.hasProperty('mavenURL')) {
+                    url mavenURL
+                }
             }
         }
 }
