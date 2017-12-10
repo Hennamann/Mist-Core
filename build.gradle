@@ -93,11 +93,10 @@ processResources {
 }
 
 jar {
-    from { configurations.exportedCompile.collect { it.isDirectory() ? it : zipTree(it) } }
+    classifier = 'universal'
     manifest {
 	    attributes 'FMLAT': 'mistcore_at.cfg'
     }
-    classifier = 'universal'
 }
 
 task sourcesJar(type: Jar) {
@@ -105,11 +104,9 @@ task sourcesJar(type: Jar) {
     classifier = 'sources'
 }
 
-task deobfJar(type: Jar, dependsOn: 'jar') {
-    from "build/sources/main/java"
-    from "build/resources/main"
-    from { configurations.exportedCompile.collect { it.isDirectory() ? it : zipTree(it) } }
-    manifest {
+task deobfJar(type: Jar) {
+    from(sourceSets.main.output)
+	  manifest {
 	    attributes 'FMLAT': 'mistcore_at.cfg'
     }
     classifier = 'dev'
@@ -163,6 +160,6 @@ publishing {
 }
 
 artifacts {
-    archives sourceJar
+    archives sourcesJar
     archives deobfJar
 }
