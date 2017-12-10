@@ -137,7 +137,7 @@ publishing {
             artifactId 'MistCore-1.12'
             from components.java
 
-            artifact sourceJar
+            artifact sourcesJar
             artifact deobfJar
         }
     }
