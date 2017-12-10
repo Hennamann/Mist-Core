@@ -85,13 +85,15 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+
+    rename '(.+_at.cfg)', 'META-INF/$1'
 }
 
 jar {
+    classifier = 'universal'
     manifest {
 	    attributes 'FMLAT': 'mistcore_at.cfg'
     }
-    classifier = 'universal'
 }
 
 task sourcesJar(type: Jar) {
@@ -100,8 +102,8 @@ task sourcesJar(type: Jar) {
 }
 
 task deobfJar(type: Jar) {
-    from sourceSets.main.output
-    manifest {
+    from(sourceSets.main.output)
+	  manifest {
 	    attributes 'FMLAT': 'mistcore_at.cfg'
     }
     classifier = 'dev'
@@ -109,6 +111,11 @@ task deobfJar(type: Jar) {
 
 task exportJavadoc(type: Javadoc) {
     source = sourceSets.main.allSource
+}
+
+task copyBuildXml(type: Copy) {
+    from 'build.properties'
+    into 'output'
 }
 
 if (JavaVersion.current().isJava8Compatible()) {
@@ -135,10 +142,16 @@ publishing {
     repositories {
             maven { 
                 credentials {
+                    if (project.hasProperty('mavenUser')) {
                         username mavenUser
+                    }
+                    if (project.hasProperty('mavenPass')) {
                         password mavenPass
                     }
-                url mavenURL
+                    }
+                if (project.hasProperty('mavenURL')) {
+                    url mavenURL
+                }
             }
         }
 }
