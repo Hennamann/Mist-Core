@@ -1,0 +1,6 @@
+build:
+  image: java:openjdk-7
+  environment:
+    - GRADLE_USER_HOME=~/.gradle
+  commands:
+    - ./gradlew publish -PmavenUser=$$mavenuser -PmavenPass="$$mavenpass" -PmavenURL=sftp://108.61.192.172:22/var/www/maven2/ -S -i
