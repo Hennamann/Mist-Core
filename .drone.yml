@@ -4,4 +4,4 @@ pipeline:
     environment:
       - GRADLE_USER_HOME=~/.gradle
     commands:
-      - ./gradlew publish -PmavenUser=$$mavenUser -PmavenPass="$$mavenpPass" -PmavenURL=sftp://108.61.192.172:22/var/www/maven2/ -S -i
+      - ./gradlew publish -PmavenUser=${maven_user} -PmavenPass=${maven_pass} -PmavenURL=sftp://108.61.192.172:22/var/www/maven2/ -S -i
