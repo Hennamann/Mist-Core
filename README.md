@@ -1,6 +1,6 @@
 # Mist-Core
-[![Build Status](http://ci.henrikstabell.com/job/Mist%20Core-1.12/badge/icon)](http://ci.henrikstabell.com/job/Mist%20Core-1.12/)
-![Build Status](https://drone.henrikstabell.com/api/badges/Hennamann/Mist-Core/status.svg)
+[![Build Status](https://ci.henrikstabell.com/job/Mist%20Core-1.12/badge/icon)](https://ci.henrikstabell.com/job/Mist%20Core-1.12/)
+[![Build Status](https://drone.henrikstabell.com/api/badges/Hennamann/Mist-Core/status.svg)](https://drone.henrikstabell.com/Hennamann/Mist-Core)
 
 **This is the 1.12.2 branch**
 
