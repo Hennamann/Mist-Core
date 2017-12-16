@@ -4,15 +4,4 @@ pipeline:
     environment:
       - GRADLE_USER_HOME=~/.gradle
     commands:
-      - ./gradlew build -S -i
-publish:
-drone-mvn:
-    image: thomasf/drone-mvn
-    username: ${maven_user}
-    password: ${maven_pass}
-    url: sftp://108.61.192.172:22/var/www/maven2/
-    group: com.henrikstabell.mistcore
-    artifact: MistCore-1.12
-    version: 1
-    source: release/*.jar
-    extension: jar
+      - ./gradlew build -i
