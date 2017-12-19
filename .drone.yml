@@ -4,4 +4,4 @@ pipeline:
     environment:
       - GRADLE_USER_HOME=~/.gradle
     commands:
-      - ./gradlew build -i
+      - ./gradlew build
