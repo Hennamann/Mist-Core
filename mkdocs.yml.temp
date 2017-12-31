@@ -1,0 +1,17 @@
+pages:
+  - Home: 'index.md'
+
+site_name: Mist Core Documentation
+
+markdown_extensions:
+  - admonition
+  - smarty
+  - sane_lists
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      use_pygments: false
+  - toc:
+      permalink: ' '
+
+theme: null
+theme_dir: 'mist_theme'
