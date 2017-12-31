@@ -8,4 +8,4 @@ This documentation is _intended_ for developers wanting to use Mist Core in thei
 Contribute to the docs at [GitHub].
 
 [MinecraftForge]: https://github.com/Hennamann/Mist-Core
-[GitHub]: https://github.com/Hennamann/Mist-Core/master/docs
+[GitHub]: https://github.com/Hennamann/Mist-Core/tree/master/docs
