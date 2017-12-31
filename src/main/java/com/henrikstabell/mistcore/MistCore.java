@@ -1,6 +1,6 @@
 package com.henrikstabell.mistcore;
 
-import com.henrikstabell.mistcore.api.MistHandler;
+import com.henrikstabell.mistcore.handler.MistHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
