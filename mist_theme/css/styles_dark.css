@@ -586,7 +586,7 @@ table .heading,
 table h2,
 table thead {
     font-size: 1.2rem;
-    color: #b4bcc1;
+    color: #fff;
     margin: 0;
     border-radius: 3px 3px 0 0;
     font-weight: 400
@@ -727,7 +727,7 @@ p {
     display: block;
     padding: .2rem .5rem;
     background: #63676c;
-    color: #b4bcc1;
+    color: #fff;
     border-radius: 3px;
     transition: background .2s ease-in-out
 }
@@ -735,14 +735,14 @@ p {
 .pagination li a:active,
 .pagination li a:focus,
 .pagination li a:hover {
-    color: #b4bcc1;
+    color: #fff;
     background: #4b4e51!important
 }
 
 .pagination li.pagination-active {
     display: block;
     padding: .2rem .5rem;
-    background: #b4bcc1;
+    background: #fff;
     border-radius: 3px;
     font-weight: 700;
     color: #bbb!important;
@@ -758,7 +758,7 @@ p {
     padding: .2rem .5rem;
     border-radius: 3px;
     background: #63676c;
-    color: #b4bcc1
+    color: #fff
 }
 
 .pagination li.pagination-first a,
@@ -1169,7 +1169,7 @@ section.sidebar-nav>ul .jspPane>li>.elem-text,
 section.sidebar-nav>ul>li>.elem-text {
     display: block;
     line-height: 1rem;
-    color: #b4bcc1;
+    color: #fff;
     background: #23DB39;
     padding: .5rem
 }
@@ -1223,7 +1223,7 @@ section.sidebar-nav>ul>li ul li {
     }
     .close-sidebar {
         display: inline;
-        color: #b4bcc1;
+        color: #fff;
         font-size: 1.5rem;
         margin-right: .5rem
     }
@@ -1531,7 +1531,7 @@ section.sidebar-nav>ul .table-of-contents .toc-subitem {
     font-weight: 700;
     padding: .2rem 1rem;
     font-size: 1.2rem;
-    color: #b4bcc1;
+    color: #fff;
     margin: 0;
     border-radius: 3px 3px 0 0;
     border-bottom: 1px solid rgba(0, 0, 0, .1)
