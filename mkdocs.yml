@@ -1,5 +1,7 @@
 pages:
   - Home: 'index.md'
+  - Getting Started:
+    - Home: 'gettingstarted/index.md'
 
 site_name: Mist Core Documentation
 
