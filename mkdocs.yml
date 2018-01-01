@@ -7,9 +7,6 @@ markdown_extensions:
   - admonition
   - smarty
   - sane_lists
-  - pymdownx.superfences
-  - pymdownx.highlight:
-      use_pygments: false
   - toc:
       permalink: ' '
 
