@@ -15,14 +15,13 @@ import static com.henrikstabell.mistcore.MistCore.VERSION;
 public class MistCore {
 
    public static final String MODID = "mistcore";
-   public static final String VERSION = "1.2.0";
+   public static final String VERSION = "1.2.1";
 
    @EventHandler
    public void preInit(FMLPreInitializationEvent event) {
       RegisterClientHandlers();
    }
 
-   @SideOnly(Side.CLIENT)
    public static void RegisterClientHandlers() {
       MinecraftForge.EVENT_BUS.register(new MistHandler());
    }
