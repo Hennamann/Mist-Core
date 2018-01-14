@@ -11,7 +11,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'maven-publish'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-version = artifactMajorVersion + '-' + artifactBuildNumber
+version = artifactMajorVersion + '-' + System.getenv('buildNumber')
 group = "com.henrikstabell.mistcore" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "mistcore-1.12"
 
@@ -92,16 +92,6 @@ processResources {
     rename '(.+_at.cfg)', 'META-INF/$1'
 }
 
-task buildIncrementer {
-  Properties props = new Properties()
-  File propsFile = new File('gradle.properties')
-  props.load(propsFile.newDataInputStream())
-  Integer nextbuildnum = ( ((props.getProperty('artifactBuildNumber')) as BigDecimal) + 1 )
-  props.setProperty('artifactBuildNumber', nextbuildnum.toString())
-  props.store(propsFile.newWriter(), null)
-  props.load(propsFile.newDataInputStream())
-}
-
 jar {
     classifier = 'universal'
     manifest {
@@ -155,18 +145,12 @@ publishing {
     repositories {
             maven { 
                 credentials {
-                    if (project.hasProperty('mavenUser')) {
-                        username mavenUser
+                        username System.getenv('userMaven')
+                        password System.getenv('passMaven')
                     }
-                    if (project.hasProperty('mavenPass')) {
-                        password mavenPass
-                    }
-                    }
-                if (project.hasProperty('mavenURL')) {
-                    url mavenURL
-                }
+                    url System.getenv('urlMaven')
             }
-        }
+       }
 }
 
 artifacts {
