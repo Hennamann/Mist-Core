@@ -148,36 +148,6 @@ publishing {
     repositories {
             maven { 
                 credentials {
-                    if (project.hasProperty('mavenUser')) {
-                        username mavenUser
-                    }
-                    if (project.hasProperty('mavenPass')) {
-                        password mavenPass
-                    }
-                    }
-                if (project.hasProperty('mavenURL')) {
-                    url mavenURL
-                }
-            }
-        }
-}
-
-publishing {
-    tasks.publish.dependsOn 'build'
-    publications {
-        mavenJava(MavenPublication) {
-            groupId 'com.henrikstabell.mistcore'
-            artifactId 'MistCore-1.9'
-            from components.java
-
-            artifact sourcesJar
-            artifact deobfJar
-        }
-    }
-
-    repositories {
-            maven { 
-                credentials {
                         username System.getenv('userMaven')
                         password System.getenv('passMaven')
                     }
