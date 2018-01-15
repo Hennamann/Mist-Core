@@ -137,7 +137,7 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             groupId 'com.henrikstabell.mistcore'
-            artifactId 'MistCore-1.9'
+            artifactId 'MistCore-1.8'
             from components.java
 
             artifact sourcesJar
