@@ -72,15 +72,10 @@ processResources
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
-
-    rename '(.+_at.cfg)', 'META-INF/$1'
 }
 
 jar {
     classifier = 'universal'
-    manifest {
-	    attributes 'FMLAT': 'mistcore_at.cfg'
-    }
 }
 
 task sourcesJar(type: Jar) {
@@ -90,9 +85,6 @@ task sourcesJar(type: Jar) {
 
 task deobfJar(type: Jar) {
     from(sourceSets.main.output)
-	  manifest {
-	    attributes 'FMLAT': 'mistcore_at.cfg'
-    }
     classifier = 'dev'
 }
 
