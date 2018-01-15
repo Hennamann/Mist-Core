@@ -21,7 +21,7 @@ plugins {
 }
 apply plugin: 'maven-publish'
 
-version = "1.0"
+version = "1.0.0-" + System.getenv('buildNumber')
 group= "com.henrikstabell.mistcore" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "mistcore-1.8"
 
@@ -137,7 +137,7 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             groupId 'com.henrikstabell.mistcore'
-            artifactId 'MistCore-1.8'
+            artifactId 'MistCore-1.9'
             from components.java
 
             artifact sourcesJar
@@ -148,18 +148,12 @@ publishing {
     repositories {
             maven { 
                 credentials {
-                    if (project.hasProperty('mavenUser')) {
-                        username mavenUser
+                        username System.getenv('userMaven')
+                        password System.getenv('passMaven')
                     }
-                    if (project.hasProperty('mavenPass')) {
-                        password mavenPass
-                    }
-                    }
-                if (project.hasProperty('mavenURL')) {
-                    url mavenURL
-                }
+                    url System.getenv('urlMaven')
             }
-        }
+       }
 }
 
 artifacts {
