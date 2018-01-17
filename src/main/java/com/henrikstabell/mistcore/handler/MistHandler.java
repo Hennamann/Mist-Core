@@ -1,7 +1,9 @@
-package com.henrikstabell.mistcore.api;
+package com.henrikstabell.mistcore.handler;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import com.henrikstabell.mistcore.api.IBiomeMist;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -26,6 +28,7 @@ public class MistHandler {
    private static boolean MistInit;
    private static float MistFarPlaneDistance;
 
+   @SideOnly(Side.CLIENT)
    @SubscribeEvent
    public void onGetMistColour(FogColors event) {
       if(event.entity instanceof EntityPlayer) {
@@ -53,6 +56,7 @@ public class MistHandler {
 
    }
 
+   @SideOnly(Side.CLIENT)
    @SubscribeEvent
    public void onRenderMist(RenderFogEvent event) {
       EntityLivingBase entity = event.entity;
