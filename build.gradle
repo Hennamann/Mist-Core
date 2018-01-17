@@ -21,7 +21,7 @@ plugins {
 }
 apply plugin: 'maven-publish'
 
-version = "1.0.0-" + System.getenv('buildNumber')
+version = "1.2.1-" + System.getenv('buildNumber')
 group= "com.henrikstabell.mistcore" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "mistcore-1.8"
 
