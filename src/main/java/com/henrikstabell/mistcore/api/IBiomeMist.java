@@ -16,4 +16,9 @@ public interface IBiomeMist {
     */
    int getMistColour(int var1, int var2, int var3);
 
+   /**
+    * Sets the numeric value for the amount of mist in the biome, used for removing mist from biomes
+    * @return 0 for no mist when specific mods are running. Check developer docs.
+    */
+   int getMistAmount(int var1);
 }
