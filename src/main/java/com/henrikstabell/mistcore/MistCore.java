@@ -13,6 +13,10 @@ public class MistCore {
 
    @EventHandler
    public void preInit(FMLPreInitializationEvent event) {
+      RegisterClientHandlers();
+   }
+
+   public static void RegisterClientHandlers() {
       MinecraftForge.EVENT_BUS.register(new MistHandler());
    }
 }
