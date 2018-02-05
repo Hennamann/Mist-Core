@@ -19,7 +19,7 @@ public interface IBiomeMist {
    /**
     * This is only used by some mods and can be considered as optional.
     * Sets the multiplier used by other mist mods like Mist Power, is used for randomizing integers.
-    * @return 0 for no multiplier, not recommended!
+    * @return 0 for no multiplier, not recommended as it will still be used by mods requesting it!
     */
    int getMistMultiplier(int var1);
 }
