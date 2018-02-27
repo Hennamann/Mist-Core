@@ -7,3 +7,9 @@
 Check curse for more info and downloads: https://minecraft.curseforge.com/projects/mist-core
 
 A Minecraft mod/library for adding mist to biomes
+
+## License
+This mod is licensed with the European Union Public License version 1.2 (EUPL-1.2)
+
+
+[License](LICENSE.MD)
