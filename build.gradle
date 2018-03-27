@@ -94,9 +94,6 @@ processResources {
 
 jar {
     classifier = 'universal'
-    manifest {
-	    attributes 'FMLAT': 'mistcore_at.cfg'
-    }
 }
 
 task sourcesJar(type: Jar) {
@@ -106,14 +103,12 @@ task sourcesJar(type: Jar) {
 
 task deobfJar(type: Jar) {
     from(sourceSets.main.output)
-	  manifest {
-	    attributes 'FMLAT': 'mistcore_at.cfg'
-    }
     classifier = 'dev'
 }
 
-task exportJavadoc(type: Javadoc) {
-    source = sourceSets.main.allSource
+task javadocJar(type: Jar, dependsOn: 'javadoc') {
+    from "build/docs/javadoc"
+    classifier "javadoc"
 }
 
 task copyBuildXml(type: Copy) {
@@ -156,4 +151,5 @@ publishing {
 artifacts {
     archives sourcesJar
     archives deobfJar
+    archives javadocJar
 }
