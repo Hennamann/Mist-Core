@@ -106,11 +106,6 @@ task deobfJar(type: Jar) {
     classifier = 'dev'
 }
 
-task javadocJar(type: Jar, dependsOn: 'javadoc') {
-    from "build/docs/javadoc"
-    classifier "javadoc"
-}
-
 task copyBuildXml(type: Copy) {
     from 'build.properties'
     into 'output'
