@@ -146,5 +146,4 @@ publishing {
 artifacts {
     archives sourcesJar
     archives deobfJar
-    archives javadocJar
 }
