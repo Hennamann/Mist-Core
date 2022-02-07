@@ -1,28 +1,36 @@
 package com.henrikstabell.mistcore;
 
-import com.henrikstabell.mistcore.handler.MistHandler;
-import net.minecraftforge.common.MinecraftForge;
+import com.henrikstabell.mistcore.api.MistBiome;
+import com.henrikstabell.mistcore.api.MistCoreApi;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static com.henrikstabell.mistcore.MistCore.MODID;
-import static com.henrikstabell.mistcore.MistCore.VERSION;
 
-@Mod(modid = MODID, version = VERSION)
+@Mod(MODID)
 public class MistCore {
 
-   public static final String MODID = "mistcore";
-   public static final String VERSION = "1.2.1";
+    public static final String MODID = "mistcore";
+    public static final Logger LOGGER = LogManager.getLogger();
 
-   @EventHandler
-   public void preInit(FMLPreInitializationEvent event) {
-      RegisterClientHandlers();
-   }
+    public MistCore() {
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::registerRegistry);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::loadComplete);
+    }
 
-   public static void RegisterClientHandlers() {
-      MinecraftForge.EVENT_BUS.register(new MistHandler());
-   }
+    private void registerRegistry(final RegistryEvent.NewRegistry event) {
+        final IForgeRegistry<MistBiome> MIST_BIOME_REGISTRY = new RegistryBuilder<MistBiome>()
+                .setIDRange(0, 0x0FFFFF)
+                .setName(new ResourceLocation(MODID, "mist_biomes"))
+                .setType(MistBiome.class)
+                .create();
+    }
+    
+    private void loadComplete(final FMLLoadCompleteEvent event) {}
 }
